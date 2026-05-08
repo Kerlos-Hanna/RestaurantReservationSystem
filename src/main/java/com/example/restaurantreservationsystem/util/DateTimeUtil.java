@@ -1,33 +1,33 @@
-package com.example.restaurantreservationsystem.util;
+using System;
+using System.Globalization;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+public class DateTimeUtil
+{
+    private const string DateFormat = "yyyy-MM-dd";
+    private const string TimeFormat = "HH:mm";
 
-// Conversion helpers between Java time types and the SQLite TEXT format used in the DB
-public class DateTimeUtil {
-
-    // Converts a LocalDate to the 'yyyy-MM-dd' string stored in the DB
-    public static String formatDate(LocalDate date) {
-        return null;
+    public static string FormatDate(DateTime date)
+    {
+        return date.ToString(DateFormat);
     }
 
-    // Parses a 'yyyy-MM-dd' DB string back to a LocalDate
-    public static LocalDate parseDate(String dateStr) {
-        return null;
+    public static DateTime ParseDate(string dateStr)
+    {
+        return DateTime.ParseExact(dateStr, DateFormat, CultureInfo.InvariantCulture);
     }
 
-    // Converts a LocalTime to the 'HH:mm' string stored in the DB
-    public static String formatTime(LocalTime time) {
-        return null;
+    public static string FormatTime(TimeSpan time)
+    {
+        return DateTime.Today.Add(time).ToString(TimeFormat);
     }
 
-    // Parses a 'HH:mm' DB string back to a LocalTime
-    public static LocalTime parseTime(String timeStr) {
-        return null;
+    public static TimeSpan ParseTime(string timeStr)
+    {
+        return DateTime.ParseExact(timeStr, TimeFormat, CultureInfo.InvariantCulture).TimeOfDay;
     }
 
-    // Returns today's date as a formatted 'yyyy-MM-dd' string
-    public static String today() {
-        return null;
+    public static string Today()
+    {
+        return DateTime.Today.ToString(DateFormat);
     }
 }
