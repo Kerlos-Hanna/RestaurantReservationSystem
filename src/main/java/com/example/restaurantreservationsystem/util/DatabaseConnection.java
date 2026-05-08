@@ -1,29 +1,80 @@
-package com.example.restaurantreservationsystem.util;
+using System;
+using System.Data;
+using System.IO;
+using Microsoft.Data.SqlClient;
 
-import java.sql.Connection;
+public class DatabaseConnection
+{
+    private static DatabaseConnection _instance;
+    private static readonly object _lock = new object();
+    private SqlConnection _connection;
 
-// Manages a single SQLite connection and runs the schema initialisation script
-public class DatabaseConnection {
+    private const string ConnectionString =
+        "Data Source=.;Initial Catalog=NORTHWIND;Integrated Security=True;Trust Server Certificate=True";
 
-    private static DatabaseConnection instance;
+    private DatabaseConnection() { }
 
-    // Returns the singleton instance, creating it on first call
-    public static DatabaseConnection getInstance() {
-        return null;
+    public static DatabaseConnection GetInstance()
+    {
+        if (_instance == null)
+        {
+            lock (_lock)
+            {
+                if (_instance == null)
+                    _instance = new DatabaseConnection();
+            }
+        }
+        return _instance;
     }
 
-    // Opens (or reuses) the SQLite connection to restaurant_reservation.db
-    public Connection getConnection() {
-        return null;
+    public IDbConnection GetConnection()
+    {
+        if (_connection == null)
+            _connection = new SqlConnection(ConnectionString);
+
+        if (_connection.State == ConnectionState.Closed ||
+            _connection.State == ConnectionState.Broken)
+            _connection.Open();
+
+        return _connection;
     }
 
-    // Executes restaurant_reservation.sql to create tables if they don't exist
-    public void initializeDatabase() {
+    public void InitializeDatabase()
+    {
+        string sqlFilePath = "restaurant_reservation.sql";
 
+        if (!File.Exists(sqlFilePath))
+            throw new FileNotFoundException($"SQL script not found: {sqlFilePath}");
+
+        string sqlScript = File.ReadAllText(sqlFilePath);
+
+        string[] batches = sqlScript.Split(
+            new[] { "\nGO", "\r\nGO", " GO" },
+            StringSplitOptions.RemoveEmptyEntries
+        );
+
+        var conn = GetConnection();
+
+        foreach (string batch in batches)
+        {
+            string trimmed = batch.Trim();
+            if (string.IsNullOrWhiteSpace(trimmed)) continue;
+
+            using var command = conn.CreateCommand();
+            command.CommandText = trimmed;
+            command.ExecuteNonQuery();
+        }
     }
 
-    // Closes the active connection and releases resources
-    public void closeConnection() {
+    public void CloseConnection()
+    {
+        if (_connection != null)
+        {
+            if (_connection.State != ConnectionState.Closed)
+                _connection.Close();
 
+            _connection.Dispose();
+            _connection = null;
+        }
     }
 }
