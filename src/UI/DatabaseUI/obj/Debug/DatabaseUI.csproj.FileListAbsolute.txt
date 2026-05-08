@@ -1,0 +1,10 @@
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\bin\Debug\DatabaseUI.exe.config
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\bin\Debug\DatabaseUI.exe
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\bin\Debug\DatabaseUI.pdb
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.csproj.AssemblyReference.cache
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.Properties.Resources.resources
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.csproj.GenerateResource.cache
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.csproj.CoreCompileInputs.cache
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.exe
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.pdb
+D:\_Senior1_SecondTerm\Database\Project\RestaurantReservationSystem\src\UI\DatabaseUI\obj\Debug\DatabaseUI.exe.config
