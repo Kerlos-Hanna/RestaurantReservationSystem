@@ -1,25 +1,24 @@
-package com.example.restaurantreservationsystem.util;
+using System.Windows.Forms;
 
-// Reusable helpers for showing JavaFX alert dialogs across all forms
-public class AlertHelper {
-
-    // Displays a success confirmation dialog with the given message
-    public static void showSuccess(String message) {
-
+public class AlertHelper
+{
+    public static void ShowSuccess(string message)
+    {
+        MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
-    // Displays an error dialog with the given message
-    public static void showError(String message) {
-
+    public static void ShowError(string message)
+    {
+        MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
-    // Displays a warning dialog with the given message
-    public static void showWarning(String message) {
-
+    public static void ShowWarning(string message)
+    {
+        MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
 
-    // Shows a Yes/No confirmation dialog; returns true if the user clicks Yes
-    public static boolean showConfirmation(String message) {
-        return false;
+    public static bool ShowConfirmation(string message)
+    {
+        return MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
     }
 }
